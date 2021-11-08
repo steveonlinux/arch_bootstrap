@@ -10,7 +10,7 @@
 install_explicit() {
 	pacman -Syu
 	echo "Installing all explicit packages"
-	for $pkgName in $(/home/steve/scr/arch_bootstrap/configs/explicitly_installed.txt)
+	for pkgName in $(/home/steve/scr/arch_bootstrap/configs/explicitly_installed.txt)
 	do
   	pacman -S --force --noconfirm $pkgName
 	done
