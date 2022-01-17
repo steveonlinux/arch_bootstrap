@@ -33,6 +33,7 @@ while true; do
 done
 mk_user() {
 	useradd --badnames --base-dir /home/$user_name -g $user_name --password $password $user_name
+	usermod -aG libvirt $user_name
 }
 install_explicit() {
 	pacman -Syu
