@@ -13,7 +13,7 @@ unset "$opts"
 while true; do
 	case "$1" in 
 	-p | --password)
-		password={$OPTARG} && make_flag="TRUE";shift;;
+		password={$OPTARG} && flag="TRUE";shift;;
 	-u | --user )
 		user_name={$OPTARG};
 		mkdir -p /home/$user_name && export XDG_CONFIG_HOME=/home/$user_name
@@ -77,4 +77,4 @@ services() {
 sym_links() {
 	ln -s /usr/bin/zsh /usr/bin/sh 
 }
-mk_user;configs;install_explicit;install_gits;install_aur;sym_links;services
+if [$flag -eq "TRUE"];then mk_user;fi;configs;install_explicit;install_gits;install_aur;sym_links;services
