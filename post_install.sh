@@ -6,8 +6,6 @@
 #from a previously used Arch based Linux distribution that used a seperate
 #home partition and SystemD
 
-#TO DO: grub mkconfig; copy new backups; 
-
 opts=$(getopt -o p:u:h:t --long password:,home:,user:,test -- "$@")
 [ $? -eq 0 ] || { echo "Incorrect options provided"; exit 1}
 eval set -- "$opts"
@@ -70,8 +68,15 @@ configs() {
 	cp -f /home/steve/.config/arch_bootstrap/sudoers.backup /etc/sudoers
 	cp -f /home/steve/.config/arch_bootstrap/pacman.conf.backup /etc/pacman.conf
 	cp -f /home/steve/.config/arch_bootstrap/xorg.conf.backup /etc/X11/xorg.conf
+	cp -f /home/steve/.config/arch_bootstrap/grub.backup /etc/default/grub
+	grub mkconfig -o /boot/grub/grub.cfg
+	cp -f /home/steve/.config/arch_bootstrap/nvidia.hook.backup
+	cp -f /home/steve/.config/arch_bootstrap/mkinitcpio.conf.backup /etc/mkinitcpio.conf
 }
-
+configs2() {
+	cp -r /home/steve/.config/arch_bootstrap/xsessions /usr/share/xsessions
+	cp -r /home/steve/.config/arch_bootstrap/wayland-sessions /usr/share/wayland-sessions
+}
 services() {
 	systemctl enable sshd ly.service clamav-freshclam.service cronie.service libvirtd
 }
@@ -79,4 +84,4 @@ services() {
 sym_links() {
 	ln -s /usr/bin/dash /usr/bin/sh 
 }
-if [$flag -eq "TRUE"];then mk_user;fi;configs;install_explicit;install_gits;install_aur;sym_links;services
+if [$flag -eq "TRUE"];then mk_user;fi;configs;install_explicit;install_gits;install_aur;configs2;sym_links;services
