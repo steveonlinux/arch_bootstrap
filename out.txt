@@ -1,0 +1,2 @@
+Installing aur packages
+Reinstalled aur packages

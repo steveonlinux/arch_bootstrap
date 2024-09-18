@@ -20,8 +20,5 @@ chown steve:steve /home/steve/.config/arch_bootstrap/sudoers.backup
 cp -r /usr/share/xsessions /home/steve/.config/arch_bootstrap/xsessions
 cp -r /usr/share/wayland-sessions /home/steve/.config/arch_bootstrap/wayland-sessions
 cp /etc/mkinitcpio.conf /home/steve/.config/arch_bootstrap/mkinitcpio.conf.backup
-cp /etc/pacman.d/hooks/nvidia.hook /home/steve/.config/arch_bootstrap/nvidia.hook.backup
 cp /etc/default/grub /home/steve/.config/arch_bootstrap/grub.backup
-grep "swap\|books\|films\|games\|tv" /etc/fstab > \
-/home/steve/.config/arch_bootstrap/fstab.backup 
 echo "Completed Reinstallation Preparation..."
